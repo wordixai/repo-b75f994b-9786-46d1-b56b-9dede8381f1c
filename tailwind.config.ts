@@ -61,7 +61,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Pop Art specific colors
+				'pop-orange': 'hsl(var(--pop-orange))',
+				'pop-pink': 'hsl(var(--pop-pink))',
+				'pop-blue': 'hsl(var(--pop-blue))',
+				'pop-yellow': 'hsl(var(--pop-yellow))',
+				'pop-black': 'hsl(var(--pop-black))',
+				'pop-white': 'hsl(var(--pop-white))'
+			},
+			fontFamily: {
+				'comic': ['Bebas Neue', 'Arial Black', 'sans-serif'],
+				'handwrite': ['Permanent Marker', 'cursive'],
+				'body': ['Poppins', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +96,29 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pop-bounce': {
+					'0%, 20%, 50%, 80%, 100%': {
+						transform: 'translateY(0) scale(1)'
+					},
+					'40%': {
+						transform: 'translateY(-8px) scale(1.02)'
+					},
+					'60%': {
+						transform: 'translateY(-4px) scale(1.01)'
+					}
+				},
+				'pop-wiggle': {
+					'0%, 100%': { transform: 'rotate(0deg)' },
+					'25%': { transform: 'rotate(-2deg)' },
+					'75%': { transform: 'rotate(2deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pop-bounce': 'pop-bounce 2s infinite',
+				'pop-wiggle': 'pop-wiggle 0.5s ease-in-out'
 			}
 		}
 	},

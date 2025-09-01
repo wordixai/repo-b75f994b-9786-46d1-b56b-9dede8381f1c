@@ -2,26 +2,191 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* POP SHOP Design System - All colors, gradients, fonts, etc defined here. 
+All colors MUST be HSL. */
 
 @layer base {
   :root {
-   
+    /* Pop Art Color Palette */
+    --pop-orange: 15 100% 60%;
+    --pop-pink: 320 100% 60%;
+    --pop-blue: 195 100% 50%;
+    --pop-yellow: 51 100% 59%;
+    --pop-black: 0 0% 0%;
+    --pop-white: 0 0% 100%;
+    
+    /* Semantic Design Tokens */
+    --background: var(--pop-white);
+    --foreground: var(--pop-black);
+    --primary: var(--pop-orange);
+    --primary-foreground: var(--pop-white);
+    --secondary: var(--pop-pink);
+    --secondary-foreground: var(--pop-white);
+    --accent: var(--pop-blue);
+    --accent-foreground: var(--pop-white);
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
+    --border: var(--pop-black);
+    --input: var(--pop-white);
+    --ring: var(--pop-blue);
+    --destructive: 0 84% 60%;
+    --destructive-foreground: var(--pop-white);
+    --card: var(--pop-white);
+    --card-foreground: var(--pop-black);
+    --popover: var(--pop-white);
+    --popover-foreground: var(--pop-black);
+    --radius: 0.5rem;
+
+    /* Pop Art specific variables */
+    --pop-explosion-bg: var(--pop-yellow);
+    --pop-comic-border: 4px;
+    --pop-dots-size: 20px;
   }
 
-  .dark {
-
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Ben Day Dots Pattern */
+  .ben-day-dots {
+    background-color: transparent;
+    background-image: radial-gradient(hsl(var(--pop-black)) 1px, transparent 1px);
+    background-size: var(--pop-dots-size) var(--pop-dots-size);
+    opacity: 0.1;
+  }
+
+  .ben-day-dots-overlay {
+    position: relative;
+  }
+
+  .ben-day-dots-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(hsl(var(--pop-black)) 1px, transparent 1px);
+    background-size: 15px 15px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  /* Pop Art Bounce Animation */
+  @keyframes pop-bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    40% {
+      transform: translateY(-8px) scale(1.02);
+    }
+    60% {
+      transform: translateY(-4px) scale(1.01);
+    }
+  }
+
+  @keyframes pop-wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+  }
+
+  @keyframes pop-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .pop-bounce {
+    animation: pop-bounce 2s infinite;
+  }
+
+  .pop-wiggle {
+    animation: pop-wiggle 0.5s ease-in-out;
+  }
+
+  .pop-pulse {
+    animation: pop-pulse 2s infinite;
+  }
+
+  /* Comic Book Borders */
+  .comic-border {
+    border: var(--pop-comic-border) solid hsl(var(--pop-black));
+    position: relative;
+  }
+
+  .comic-border::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 2px solid hsl(var(--pop-white));
+    pointer-events: none;
+  }
+
+  /* Explosion Background */
+  .explosion-bg {
+    background: hsl(var(--pop-explosion-bg));
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+
+  /* Split Background */
+  .split-bg-orange-pink {
+    background: linear-gradient(90deg, hsl(var(--pop-orange)) 50%, hsl(var(--pop-pink)) 50%);
+  }
+
+  /* Typography */
+  .font-comic {
+    font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .font-handwrite {
+    font-family: 'Permanent Marker', cursive;
+  }
+
+  .font-body {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Pop Art Text Effects */
+  .text-pop-shadow {
+    text-shadow: 3px 3px 0px hsl(var(--pop-black));
+  }
+
+  .text-comic-outline {
+    -webkit-text-stroke: 2px hsl(var(--pop-black));
+    text-shadow: 3px 3px 0px hsl(var(--pop-white));
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--pop-white));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--pop-pink));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--pop-blue));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
